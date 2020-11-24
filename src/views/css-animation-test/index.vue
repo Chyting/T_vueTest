@@ -20,6 +20,9 @@
         <li class="li-style">
           <router-link :to="{name:'tabcheck'}">tab切换</router-link>
         </li>
+        <li class="li-style">
+          <router-link :to="{name:'transition-vue'}">vue的过渡属性</router-link>
+        </li>
       </ul>
     </div>
     <div class="test-show">

@@ -75,6 +75,11 @@ Vue.use(Router);
           path:'/tabcheck',
           name:'tabcheck',
           component:() => import("../views/css-animation-test/tabcheck")
+        },
+        {
+          path:'/transition-vue',
+          name:'transition-vue',
+          component:() => import("../views/css-animation-test/transition-vue")
         }
       ]
     }
