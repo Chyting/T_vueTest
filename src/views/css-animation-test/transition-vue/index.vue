@@ -4,6 +4,7 @@
       <button @click="show = !show">click me</button>
       <transition name="fale">
         <p v-if="show">hello</p>
+        <p>我在尝试vscode上的git使用</p>
       </transition>
     </div>
   </div>
