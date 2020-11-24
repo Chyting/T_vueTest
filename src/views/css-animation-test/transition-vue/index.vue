@@ -5,6 +5,7 @@
       <transition name="fale">
         <p v-if="show">hello</p>
         <p>我在尝试vscode上的git使用</p>
+        <p>这是我在分支上的测试</p>
       </transition>
     </div>
   </div>
