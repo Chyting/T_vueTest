@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./vuex.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <father >
+    </father>
+  </div>
+  <template id="father">
+    <div>
+      <button @click="changeMsg">父亲按钮</button>
+      <input type="text" v-model="msg">
+      <br/>
+      <son @parent-change='changeMsg'></son>
+    </div>
+  </template>
+  <template id="son">
+    <div>
+      <button @click='chuandiF'>孩子按钮</button>
+      <input type="text"  v-model="sonMsg">
+    </div>
+  </template>
+</body>
+<script>
+  //2.创建vuex对象
+  const store = new Vuex.Store({
+    // state用于保存共享数据
+    state:{
+      msg:'乐清阿海'
+    },
+    // mutations 用于保存修改共享数据的方法
+    mutations:{
+      mAdd(state){
+        state.msg = '小仙男'
+      }
+    },
+  })
+
+  Vue.component('father',{
+    template:"#father",
+    store:store,
+    data(){
+      return{
+        msg:'我是父亲噢'
+      }
+    },
+    methods:{
+      changeMsg(value){
+        console.log(value)
+        this.msg = value 
+      }
+    },
+    components:{
+      "son":{
+        template:'#son',
+        data(){
+          return {
+            sonMsg:'我是孩子噢'
+          }
+        },
+        methods:{
+          chuandiF(){
+            this.$emit('parent-change',this.sonMsg)
+          }
+        }
+      }
+    }
+ 
+  
+  })
+  var vm = new Vue({
+    el:'#app',
+    component:{
+      father
+    }
+  })
+</script>
+</html>

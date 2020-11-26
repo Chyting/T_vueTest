@@ -9,12 +9,12 @@
 </head>
 <body>
   <div id="app">
-    <father>
+    <father >
     </father>
   </div>
   <template id="father">
     <div>
-      <h2>{{this.$store.state.msg}}</h2>
+      <!-- <h2>{{this.$store.state.msg}}</h2>
       <son>
         <div>我只是一个突如其来的插槽</div>
         <div>我是子组件的数据</div>
@@ -28,11 +28,15 @@
           <div>我是作用域插槽噢-----{{ccc.list}}</div>
         </template>
       </son>
-      <son2></son2>
+      <son2></son2> -->
+      <son @click="receptSon"></son>
+      <p>我想输出子级内容-----{{names}}</p>
+
     </div>
   </template>
   <template id="son">
     <div>
+      <button @click='changeF'></button>
       <slot name="two">我是默认插槽</slot>
       <slot v-bind:names="names">我是默认插槽</slot>
       <slot v-bind:names="list">我是默认插槽</slot>
@@ -65,6 +69,7 @@
   Vue.component('father',{
     template:"#father",
     store:store,
+    data(){return{names:''}},
     components:{
       "son":{
         template:'#son',
@@ -72,6 +77,11 @@
           return {
             names:['zs','ls','wu'],
             list:['zzz','我是','小仙女'],
+          }
+        },
+        methods:{
+          changeF(){
+            this.$emit('receptSon',this.names)
           }
         }
       },
@@ -85,6 +95,11 @@
             this.$store.commit('mAdd')
           }
         }
+      }
+    },
+    methods:{
+      receptSon(value){
+        this.names = value
       }
     }
   })
